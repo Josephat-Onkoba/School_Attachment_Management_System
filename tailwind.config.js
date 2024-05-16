@@ -7,7 +7,13 @@ export default {
     "./node_modules/flowbite/**/*.js",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+         // custom color here
+        'custom-color': '#36383C',
+        'custom-color-2':'#6C757D'
+      }
+    }
   },
   plugins: [
     require('daisyui'),
