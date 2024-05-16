@@ -8,17 +8,17 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
 </head>
 <body class="flex flex-col h-screen">
-    <header class="bg-white border-gray-200 dark:bg-gray-900">
+    
         @include('layouts.header')
-    </header>
+   
     
     <main class="flex-grow">
         @yield('content')
     </main>
     
-    <footer class="bg-white rounded-lg shadow dark:bg-gray-900">
+  
         @include('layouts.footer')
-    </footer>
+   
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>
