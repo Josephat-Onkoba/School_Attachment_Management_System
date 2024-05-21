@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AuthController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -21,3 +22,10 @@ Route::get('/auth/activate', function () {
 Route::get('/auth/set-password', function () {
     return view('auth/setpassword');
 });
+
+
+Route::get('/student/dashboard', function () {
+    return view('student/dashboard/dashboard');
+});
+//Route::get('/upload', [AuthController::class, 'showUploadForm']);
+Route::post('/upload', [AuthController::class, 'upload'])->name('upload');
