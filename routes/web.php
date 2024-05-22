@@ -15,13 +15,15 @@ Route::get('/auth/login', function () {
     return view('auth/login');
 });
 
-Route::get('/auth/activate', function () {
-    return view('auth/activate');
-});
+// ACTIVATE
 
-Route::get('/auth/set-password', function () {
-    return view('auth/setpassword');
-});
+Route::get('/auth/activate', [AuthController::class, 'activateform'])->name('activateForm');
+Route::post('/auth/activate', [AuthController::class, 'activate'])->name('activate');
+
+
+//set password
+Route::get('/auth/setpassword', [AuthController::class, 'showSetPasswordForm'])->name('setPasswordForm');
+Route::post('/auth/setpassword', [AuthController::class, 'setPassword'])->name('setPassword');
 
 
 Route::get('/student/dashboard', function () {
