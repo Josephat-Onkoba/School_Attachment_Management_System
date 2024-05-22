@@ -16,11 +16,32 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
+
+    const TYPE_HOD = 1;
+    const TYPE_STAFF = 2;
+    const TYPE_STUDENT = 3;
+
     protected $fillable = [
         'name',
         'email',
         'password',
+        'user_type',
     ];
+
+    public function isHod()
+    {
+        return $this->user_type === self::TYPE_HOD;
+    }
+
+    public function isStaff()
+    {
+        return $this->user_type === self::TYPE_STAFF;
+    }
+
+    public function isStudent()
+    {
+        return $this->user_type === self::TYPE_STUDENT;
+    }
 
     /**
      * The attributes that should be hidden for serialization.
