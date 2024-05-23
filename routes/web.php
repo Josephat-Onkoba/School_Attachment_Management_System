@@ -13,14 +13,19 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::get('/auth/login', function () {
-    return view('auth/login');
+Route::get('/email/verify', function () {
+    return view('emails/emailverify');
 });
 
-Route::get('/auth/login', [AuthController::class, 'login'])->name('login');;
+//Authenication
+Route::get('/auth/login', [AuthController::class, 'login'])->name('login');
 Route::post('/login', [AuthController::class, 'Authlogin'])->name('auth.login');
 Route::get('/logout', [AuthController::class, 'logout']);
+
+//set password
+Route::get('/auth/set-password/{token}', [StudentController::class, 'showSetPasswordForm'])->name('password.set');
+Route::post('/auth/set-password', [StudentController::class, 'setPassword'])->name('password.update');
+Route::get('/email/check', [StudentController::class, 'checkemail'])->name('check_email');
 
 
 // Activate
@@ -49,7 +54,4 @@ Route::middleware(['auth'])->group(function () {
 // Non-authenticated routes for students
 Route::middleware(['user.type:' . User::TYPE_STUDENT])->group(function () {
     
-    // Set Password
-    Route::get('/auth/setpassword', [StudentController::class, 'showSetPasswordForm'])->name('setPasswordForm');
-    Route::post('/auth/setpassword', [StudentController::class, 'setPassword'])->name('setPassword');
 });

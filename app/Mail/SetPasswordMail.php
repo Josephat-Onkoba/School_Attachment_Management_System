@@ -13,16 +13,34 @@ class SetPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
+    public $token;
+
     /**
      * Create a new message instance.
+     *
+     * @param string $token
      */
-    public function __construct()
+    public function __construct($token)
     {
-        //
+        $this->token = $token;
+    }
+
+    /**
+     * Build the message.
+     *
+     * @return $this
+     */
+    public function build()
+    {
+        return $this->view('emails.set_password')->with([
+            'token' => $this->token,
+        ]);
     }
 
     /**
      * Get the message envelope.
+     *
+     * @return \Illuminate\Mail\Mailables\Envelope
      */
     public function envelope(): Envelope
     {
@@ -33,18 +51,20 @@ class SetPasswordMail extends Mailable
 
     /**
      * Get the message content definition.
+     *
+     * @return \Illuminate\Mail\Mailables\Content
      */
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.set_password',
         );
     }
 
     /**
      * Get the attachments for the message.
      *
-     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
+     * @return array
      */
     public function attachments(): array
     {
